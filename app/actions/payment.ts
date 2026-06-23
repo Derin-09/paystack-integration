@@ -7,6 +7,7 @@ export interface PaymentState {
   fieldErrors: Record<string, string>;
   paystackUrl: string | null;
 }
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 export async function initiatePayment(
   _prevState: PaymentState,
@@ -59,7 +60,7 @@ export async function initiatePayment(
           email,
           amount: amountKobo,
           callback_url:
-            "http://localhost:3000/payment/success",
+            `${baseUrl}/payment/success`,
           metadata: {
             custom_fields: [
               {
